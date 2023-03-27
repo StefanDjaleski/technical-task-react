@@ -1,10 +1,16 @@
-import { Outlet } from 'react-router-dom';
+import './Layout.scss';
+import { NavLink, Outlet } from 'react-router-dom';
+import { FAVORITES, PHOTOS } from '../../constants/constants';
 
 function Layout(): JSX.Element {
   return (
-    <div className="layout">
+    <>
+      <header>
+        <NavLink to="/">{PHOTOS}</NavLink>
+        <NavLink to="/favorites">{FAVORITES}</NavLink>
+      </header>
       <Outlet />
-    </div>
+    </>
   );
 }
 

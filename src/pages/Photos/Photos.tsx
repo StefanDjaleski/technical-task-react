@@ -1,5 +1,5 @@
 function Photos(): JSX.Element {
-  return <div>photos</div>;
+  return <>photos</>;
 }
 
 export default Photos;
