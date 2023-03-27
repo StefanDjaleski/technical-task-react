@@ -1,0 +1,21 @@
+// Sample css to have an overview of the layout, to be updated when functionality is completed
+
+header {
+  height: 100px;
+  background: darkgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    display: flex;
+    width: 200px;
+    height: 60px;
+    border: 1px solid black;
+    line-height: 60px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
