@@ -25,9 +25,9 @@ function Photos(): JSX.Element {
       setLoading(false);
 
       const additionalItems = [
-        'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-        'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-        'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I'
+        'https://picsum.photos/id/1/5000/3333',
+        'https://picsum.photos/id/1/5000/3333',
+        'https://picsum.photos/id/1/5000/3333'
       ];
       const newItems = items.concat(additionalItems);
       setItems(newItems);
