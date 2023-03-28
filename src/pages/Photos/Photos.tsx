@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loader from '../../components/Loader/Loader';
-import PhotoDetail from '../../components/PhotoDetail/PhotoDetail';
 import PhotosGridLayout from '../../components/PhotosGridLayout/PhotosGridLayout';
+import ThumbnailPhoto from '../../components/ThumbnailPhoto/ThumbnailPhoto';
 
 function Photos(): JSX.Element {
   const [items, setItems] = useState<string[]>([]);
@@ -39,7 +39,6 @@ function Photos(): JSX.Element {
     const scrollHeight = document.documentElement.scrollHeight;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      console.log(scrollTop, scrollHeight, clientHeight);
       addNewItems();
     }
   };
@@ -53,7 +52,7 @@ function Photos(): JSX.Element {
     <>
       <PhotosGridLayout>
         {items.map((item, index) => (
-          <PhotoDetail src={item} key={`${item}-${index}`} />
+          <ThumbnailPhoto src={item} key={`${item}-${index}`} />
         ))}
       </PhotosGridLayout>
       {loading ? <Loader /> : null}
