@@ -1,15 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
+import { ReactRoute } from '../interfaces/ReactRoute';
 import Favorites from '../pages/Favorites/Favorites';
 import Photo from '../pages/Photo/Photo';
 import Photos from '../pages/Photos/Photos';
-
-interface ReactRoute {
-  element: React.ReactNode;
-  path?: string;
-  children?: ReactRoute[];
-  title?: string;
-}
 
 const routes: ReactRoute[] = [
   {

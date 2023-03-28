@@ -1,0 +1,20 @@
+.full-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+
+  img {
+    object-fit: contain;
+    border: 1px solid black;
+    max-height: 80%;
+    max-width: 80%;
+    margin-bottom: 20px;
+  }
+
+  button {
+    width: 150px;
+    height: 60px;
+  }
+}
