@@ -1,37 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { axiosInstance } from '../../axios/axios';
 import Loader from '../../components/Loader/Loader';
 import PhotosGridLayout from '../../components/PhotosGridLayout/PhotosGridLayout';
 import ThumbnailPhoto from '../../components/ThumbnailPhoto/ThumbnailPhoto';
+import { PhotoItem } from '../../interfaces/PhotoItem';
 
 function Photos(): JSX.Element {
-  const [items, setItems] = useState<string[]>([]);
+  const [items, setItems] = useState<PhotoItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const getInitialPhotos = useCallback(() => {
+    setLoading(true);
+    axiosInstance
+      .get('photos/initial-photos')
+      .then(function (response) {
+        console.log('Getting photos response: ', response);
+        setItems([...response.data]);
+      })
+      .catch(function (error) {
+        console.log('Error while receiving photos: ', error);
+      })
+      .finally(function () {
+        setLoading(false);
+      });
+  }, [axiosInstance]);
+
   useEffect(() => {
-    setItems([
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I',
-      'https://fastly.picsum.photos/id/863/200/300.jpg?hmac=4kin1N4a7dzocUZXCwLWHewLobhw1Q6_e_9E3Iy3n0I'
-    ]);
-  }, []);
+    getInitialPhotos();
+  }, [getInitialPhotos]);
 
   const addNewItems = (): void => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-
-      const additionalItems = [
-        'https://picsum.photos/id/1/5000/3333',
-        'https://picsum.photos/id/1/5000/3333',
-        'https://picsum.photos/id/1/5000/3333'
-      ];
-      const newItems = items.concat(additionalItems);
-      setItems(newItems);
-    }, 500);
+    axiosInstance
+      .get('photos/additional-photos')
+      .then(function (response) {
+        const oldPhotos = [...items];
+        const updatedPhotos = oldPhotos.concat(response.data);
+        setItems(updatedPhotos);
+      })
+      .catch(function (error) {
+        console.log('Error while receiving photos: ', error);
+      })
+      .finally(function () {
+        setLoading(false);
+      });
   };
 
   const onScroll = (): void => {
@@ -52,7 +64,7 @@ function Photos(): JSX.Element {
     <>
       <PhotosGridLayout>
         {items.map((item, index) => (
-          <ThumbnailPhoto src={item} key={`${item}-${index}`} />
+          <ThumbnailPhoto src={item.url} key={`${item}-${index}`} />
         ))}
       </PhotosGridLayout>
       {loading ? <Loader /> : null}
