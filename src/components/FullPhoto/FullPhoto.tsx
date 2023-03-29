@@ -1,4 +1,7 @@
-import { REMOVE_FAVORITE } from '../../constants/constants';
+import {
+  REMOVED_FROM_FAVORITES,
+  REMOVE_FAVORITE
+} from '../../constants/constants';
 import { removePhotoFromFavorites } from '../../utils/storage';
 import './FullPhoto.scss';
 
@@ -10,6 +13,7 @@ interface Props {
 function FullPhoto({ src, id }: Props): JSX.Element {
   const removeFavorite = (): void => {
     removePhotoFromFavorites(id);
+    alert(REMOVED_FROM_FAVORITES);
   };
 
   return (

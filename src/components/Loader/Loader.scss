@@ -1,3 +1,11 @@
+.background {
+  background: black;
+  opacity: 0.3;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
 .loader {
   margin: auto;
   left: 0;
@@ -16,8 +24,8 @@
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid black;
-  border-color: black transparent black transparent;
+  border: 6px solid #800000;
+  border-color: #800000 transparent #800000 transparent;
   animation: loader 1.2s linear infinite;
 }
 

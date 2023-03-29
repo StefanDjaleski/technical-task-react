@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ADDED_TO_FAVORITES } from '../../constants/constants';
 import { addFavorite } from '../../utils/storage';
 import './ThumbnailPhoto.scss';
 
@@ -14,6 +15,7 @@ function ThumbnailPhoto({ src, id }: Props): JSX.Element {
 
   const addPhotoToFavorites = (): void => {
     addFavorite(src);
+    alert(ADDED_TO_FAVORITES);
   };
 
   const openFullPhoto = (): void => {

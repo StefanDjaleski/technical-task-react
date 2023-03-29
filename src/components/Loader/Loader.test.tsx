@@ -9,3 +9,8 @@ it('displays a loader', () => {
   const loader = screen.getByTestId('loader');
   expect(loader).toBeVisible();
 });
+
+it('displays a background', () => {
+  const background = screen.getByTestId('background');
+  expect(background).toBeVisible();
+});
