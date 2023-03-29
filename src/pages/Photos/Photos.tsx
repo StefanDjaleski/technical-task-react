@@ -63,9 +63,11 @@ function Photos(): JSX.Element {
   return (
     <>
       <PhotosGridLayout>
-        {items.map((item, index) => (
-          <ThumbnailPhoto src={item.url} key={`${item}-${index}`} />
-        ))}
+        {items.length
+          ? items.map((item, index) => (
+              <ThumbnailPhoto src={item.url} key={`${item}-${index}`} />
+            ))
+          : null}
       </PhotosGridLayout>
       {loading ? <Loader /> : null}
     </>
